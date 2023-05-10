@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\Document;
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -19,7 +19,7 @@ class Document extends Model
 
   public function type()
   {
-    return $this->belongsTo(Document::class);
+    return $this->belongsTo(Type::class);
   }
 
   public function user()
