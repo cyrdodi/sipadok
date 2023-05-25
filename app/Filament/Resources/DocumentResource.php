@@ -68,14 +68,17 @@ class DocumentResource extends Resource
     return $table
       ->columns([
         Tables\Columns\TextColumn::make('name')
+          ->sortable()
           ->searchable(),
         Tables\Columns\TextColumn::make('description')
           ->searchable(),
-        Tables\Columns\TextColumn::make('type.name'),
+        Tables\Columns\TextColumn::make('type.name')
+          ->sortable(),
         Tables\Columns\TextColumn::make('year')
+          ->sortable()
           ->searchable(),
         // Tables\Columns\TextColumn::make('user.name'),
-        Tables\Columns\TextColumn::make('tags'),
+        Tables\Columns\TagsColumn::make('tags'),
         // Tables\Columns\TextColumn::make('link'),
         // Tables\Columns\TextColumn::make('created_at')
         //   ->dateTime(),
@@ -103,6 +106,7 @@ class DocumentResource extends Resource
       //
     ];
   }
+
 
   public static function getPages(): array
   {
