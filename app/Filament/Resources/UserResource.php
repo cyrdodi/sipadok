@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\CheckboxList;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\UserResource\RelationManagers\RolesRelationManager;
 
 // use App\Filament\Resources\UserResource\RelationManagers;
 // use App\Filament\Resources\UserResource\RelationManagers\RoleRelationManager;
@@ -25,7 +24,9 @@ class UserResource extends Resource
 {
   protected static ?string $model = User::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-collection';
+  protected static ?string $navigationIcon = 'heroicon-o-user';
+
+  protected static ?string $navigationGroup = 'Settings';
 
   public static function form(Form $form): Form
   {
@@ -89,9 +90,7 @@ class UserResource extends Resource
 
   public static function getRelations(): array
   {
-    return [
-      RolesRelationManager::class
-    ];
+    return [];
   }
 
   public static function getPages(): array

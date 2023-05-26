@@ -9,6 +9,7 @@ use App\Models\Document;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\DocumentResource\Pages;
@@ -21,7 +22,7 @@ class DocumentResource extends Resource
 {
   protected static ?string $model = Document::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-collection';
+  protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
   public static function form(Form $form): Form
   {
@@ -36,27 +37,30 @@ class DocumentResource extends Resource
     // dd($years);
     return $form
       ->schema([
-        Forms\Components\TextInput::make('name')
-          ->required()
-          ->maxLength(255)
-          ->label('Nama Dokumen'),
-        Forms\Components\TextInput::make('description')
-          ->required()
-          ->maxLength(255)
-          ->label('Deskripsi'),
-        Forms\Components\Select::make('type_id')
-          ->options(Type::all()->pluck('name', 'id'))
-          ->required()
-          ->label('Tipe'),
-        Forms\Components\Select::make('year')
-          ->options($years)
-          ->required()
-          ->label('Tahun'),
-        Forms\Components\TagsInput::make('tags')
-          ->required(),
-        Forms\Components\TextInput::make('link')
-          ->required()
-          ->maxLength(255),
+        Card::make()
+          ->schema([
+            Forms\Components\TextInput::make('name')
+              ->required()
+              ->maxLength(255)
+              ->label('Nama Dokumen'),
+            Forms\Components\TextInput::make('description')
+              ->required()
+              ->maxLength(255)
+              ->label('Deskripsi'),
+            Forms\Components\Select::make('type_id')
+              ->options(Type::all()->pluck('name', 'id'))
+              ->required()
+              ->label('Tipe'),
+            Forms\Components\Select::make('year')
+              ->options($years)
+              ->required()
+              ->label('Tahun'),
+            Forms\Components\TagsInput::make('tags')
+              ->required(),
+            Forms\Components\TextInput::make('link')
+              ->required()
+              ->maxLength(255),
+          ])
       ]);
   }
 
