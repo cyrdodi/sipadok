@@ -2,17 +2,24 @@
 
 namespace App\Filament\Resources\DocumentResource\Widgets;
 
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
+use App\Models\Document;
+use App\Models\Type;
 use Filament\Widgets\StatsOverviewWidget\Card;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class StatsOverview extends BaseWidget
 {
   protected function getCards(): array
   {
-    return [
-      Card::make('Unique views', '192.1k'),
-      Card::make('Bounce rate', '21%'),
-      Card::make('Average time on page', '3:12'),
-    ];
+    $types = Type::all();
+
+    $cards = [];
+    $cards[] = Card::make('Jumlah Dokumen', Document::count());
+    foreach ($types as $type) {
+      $cards[] = Card::make($type->name, $type->documents->count());
+    }
+
+    return
+      $cards;
   }
 }

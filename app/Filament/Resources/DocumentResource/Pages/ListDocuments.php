@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\DocumentResource\Pages;
 
 use App\Filament\Resources\DocumentResource;
+use App\Filament\Resources\DocumentResource\Widgets\StatsOverview;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -21,4 +22,11 @@ class ListDocuments extends ListRecords
   {
     return true;
   }
+
+  // protected function getHeaderWidgets(): array
+  // {
+  //   return [
+  //     StatsOverview::class
+  //   ];
+  // }
 }

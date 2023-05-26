@@ -1,5 +1,6 @@
 <?php
 
+use App\Filament\Resources\DocumentResource\Widgets\StatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Http\Middleware\MirrorConfigToSubpackages;
@@ -139,6 +140,7 @@ return [
     'namespace' => 'App\\Filament\\Widgets',
     'path' => app_path('Filament/Widgets'),
     'register' => [
+      StatsOverview::class,
       Widgets\AccountWidget::class,
       // Widgets\FilamentInfoWidget::class,
     ],

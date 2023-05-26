@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\DocumentResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\DocumentResource\RelationManagers;
+use App\Filament\Resources\DocumentResource\Widgets\StatsOverview;
 
 class DocumentResource extends Resource
 {
@@ -104,6 +105,13 @@ class DocumentResource extends Resource
   {
     return [
       //
+    ];
+  }
+
+  public static function getWidgets(): array
+  {
+    return [
+      StatsOverview::class
     ];
   }
 
