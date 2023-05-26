@@ -5,15 +5,21 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
+use Pages\ViewDocument;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Filament\Resources\Pages\Page;
 use Illuminate\Support\Facades\Hash;
+use Filament\Forms\Components\Select;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\CheckboxList;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\UserResource\RelationManagers;
+use App\Filament\Resources\UserResource\RelationManagers\RolesRelationManager;
+
+// use App\Filament\Resources\UserResource\RelationManagers;
+// use App\Filament\Resources\UserResource\RelationManagers\RoleRelationManager;
 
 class UserResource extends Resource
 {
@@ -32,6 +38,8 @@ class UserResource extends Resource
           ->email()
           ->required()
           ->maxLength(255),
+        CheckboxList::make('roles')
+          ->relationship('roles', 'name'),
         // Forms\Components\DateTimePicker::make('email_verified_at'),
         Forms\Components\TextInput::make('password')
           ->password()
@@ -58,6 +66,7 @@ class UserResource extends Resource
       ->columns([
         Tables\Columns\TextColumn::make('name'),
         Tables\Columns\TextColumn::make('email'),
+        Tables\Columns\TextColumn::make('roles.name'),
         // Tables\Columns\TextColumn::make('email_verified_at')
         //   ->dateTime(),
         Tables\Columns\IconColumn::make('is_admin')
@@ -81,7 +90,7 @@ class UserResource extends Resource
   public static function getRelations(): array
   {
     return [
-      //
+      RolesRelationManager::class
     ];
   }
 
