@@ -239,7 +239,7 @@ return [
       'have_inline_labels' => false,
     ],
     'footer' => [
-      'should_show_logo' => true,
+      'should_show_logo' => false,
     ],
     'max_content_width' => null,
     'notifications' => [
@@ -301,7 +301,7 @@ return [
     |
     | When using a custom font, you should also set the font family in your
     | custom theme's `tailwind.config.js` file.
-    |
+    |f
     */
 
   'google_fonts' => 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap',
